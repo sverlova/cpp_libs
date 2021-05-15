@@ -360,46 +360,6 @@ std::istream& operator>>(std::istream& in, BigInteger& x) {
     return in;
 }
 
-class Rational {
-  public:
-    Rational();
-    Rational(int x);
-    Rational(const BigInteger& x);
-
-    Rational operator-() const;
-    Rational& operator+=(const Rational& x);
-    Rational& operator-=(const Rational& x);
-    Rational& operator*=(const Rational& x);
-    Rational& operator/=(const Rational& x);
-
-    std::string toString() const;
-    std::string asDecimal(size_t precision) const;
-    explicit operator double();
-
-  private:
-    BigInteger numerator;
-    BigInteger denominator;
-
-    void normalize();
-
-    friend bool operator==(const Rational& a, const Rational& b);
-    friend bool operator<=(const Rational& a, const Rational& b);
-};
-
-Rational operator+(const Rational& a, const Rational& b);
-Rational operator-(const Rational& a, const Rational& b);
-Rational operator*(const Rational& a, const Rational& b);
-Rational operator/(const Rational& a, const Rational& b);
-
-bool operator==(const Rational& a, const Rational& b);
-bool operator!=(const Rational& a, const Rational& b);
-bool operator<=(const Rational& a, const Rational& b);
-bool operator>=(const Rational& a, const Rational& b);
-bool operator<(const Rational& a, const Rational& b);
-bool operator>(const Rational& a, const Rational& b);
-
-std::ostream& operator<<(std::ostream& out, const Rational& x);
-
 Rational::Rational(): numerator(0), denominator(1) {};
 Rational::Rational(int x): numerator(x), denominator(1) {};
 Rational::Rational(const BigInteger& x): numerator(x), denominator(1) {};
